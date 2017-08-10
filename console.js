@@ -68,12 +68,15 @@ console.pretty = function(c) {
                 }  
 			}               
             else {
-                console.group('%cObject: ', 'color:' + colourSchemes.warning.text + '');
-                    Object.keys(c).forEach(function(key) {
-                        console.log(key, c[key]);
-                    });     
-                    console.log('%cArgs-> ' + arguments + '', 'color:' + colourSchemes.warning.text + '');  
-                console.groupEnd();
+//                 console.group('%cObject: ', 'color:' + colourSchemes.warning.text + '');
+//                     Object.keys(c).forEach(function(key) {
+//                         console.log(key, c[key]);
+//                     });     
+//                     console.log('%cArgs-> ' + arguments + '', 'color:' + colourSchemes.warning.text + '');  
+//                 console.groupEnd();
+		    
+		// or stringify!?
+		console.log(JSON.stringify(c, null, '\t'));
             }                    
         }
         else {
