@@ -3,7 +3,6 @@ console.pretty = function(c) {
   // get type of input
   var inputType = typeof c;
   var args = arguments;
-  console.log(inputType, arguments);
   
   // colour scheme
   colourSchemes = {
@@ -29,25 +28,29 @@ console.pretty = function(c) {
     case 'string' :
         console.log('%c' + c, 'color:' + colourSchemes.standard.text + '');
         break;
-    case 'array' :
-        if ( c[0] != null ) { 
-            console.group('%cArray: ', 'color:' + colourSchemes.warning.text + '; border:' + colourSchemes.special.border + '');
-                c.forEach(function(item, i){
-                    console.log('%c '+ i + ' => ' + item  + ' ', 'color:' + colourSchemes.standard.text + '');
-                });              
-            console.groupEnd();  
-        }    
-        else {
-          console.log('%c' + 'Empty array!', 'color:' + colourSchemes.warning.text + '; background-color:' + colourSchemes.warning.back + '; border:' + colourSchemes.warning.border + '');
-        } 
-        break;
     case 'object' :
         if ( !null ) { 
-            console.group('%cObject: ', 'color:' + colourSchemes.warning.text + '; border:' + colourSchemes.special.border + '');
-                Object.keys(c).forEach(function(key) {
-                    console.log(key, c[key]);
-                });     
-             console.groupEnd();        
+            if ( c.constructor === Array ) {
+                if ( c[0] != null ) { 
+                    console.group('%cArray: ', 'color:' + colourSchemes.warning.text + '');
+                        c.forEach(function(item, i){
+                            console.log('%c '+ i + ' => ' + item  + ' ', 'color:' + colourSchemes.standard.text + '');
+                        });          
+                    console.log('%cArgs-> ' + arguments + '', 'color:' + colourSchemes.warning.text + '');     
+                    console.groupEnd();  
+				}
+                else {
+                  console.log('%c' + 'Empty array!', 'color:' + colourSchemes.warning.text + '; background-color:' + colourSchemes.warning.back + '; border:' + colourSchemes.warning.border + '');
+                }  
+			}               
+            else {
+                console.group('%cObject: ', 'color:' + colourSchemes.warning.text + '');
+                    Object.keys(c).forEach(function(key) {
+                        console.log(key, c[key]);
+                    });     
+                    console.log('%cArgs-> ' + arguments + '', 'color:' + colourSchemes.warning.text + '');  
+                console.groupEnd();
+            }                    
         }
         else {
           console.log('%c' + 'null!', 'color:' + colourSchemes.warning.text + '; background-color:' + colourSchemes.warning.back + '; border:' + colourSchemes.warning.border + '');
