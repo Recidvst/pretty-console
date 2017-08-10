@@ -23,6 +23,30 @@ console.pretty = function(c) {
               }
   }
    
+  // test elements
+  var boolean = true;
+  var string = 'string';
+  var undefined = undefined;
+  var array1 = [1,2,3];
+  var array2 = [1,2,[3,4,5],6];
+  var array3 = [
+    a = { name: "aa", test: "test1" },
+    b ={ name: "bb", test: "test2" }
+  ];
+  var array4 = new Array();
+  var object1 = { 
+    a : { name: "aa", test: "test1" },
+    b : { name: "bb", test: "test2" }
+  };
+  var object2 = {
+    a: 'b',
+    c: 'd'
+  }
+  var object3 = {};
+  var func1 = function() { console.log('hi');}
+  var func2 = function(a,b,c) { console.log('hi');}
+	
+	
   // different action dependng on type  
   switch(inputType) {
     case 'string' :
@@ -59,8 +83,24 @@ console.pretty = function(c) {
     case 'boolean' :
         console.log('%c' + c, 'color:' + colourSchemes.special.text + '; background-color:' + colourSchemes.special.back + '');
         break;    
-      case 'function' :
-          
+    case 'function' :
+	 function getArgs(func) {
+	    var args = func.toString().match(/function\s.*?\(([^)]*)\)/)[1];
+	    return args.split(',').map(function(arg) {
+	      return arg.replace(/\/\*.*\*\//, '').trim();
+	    }).filter(function(arg) {
+	      return arg;
+	    });
+	 }	
+	 function getBody(func) {
+	    var args = func.toString();
+            var body = args.match(/{[\w\W]*}/);
+		 return body[0]
+	 }
+	  var funcDetails = [c.name,getArgs(c),getBody(c)];
+	  	funcDetails.forEach(function(item, i){
+	      		console.log('%c '+ i + ' => ' + item  + ' ', 'color:' + colourSchemes.standard.text + '');
+	 	});    
         break;
     case 'undefined' :
         console.log('%c' + 'undefined!', 'color:' + colourSchemes.warning.text + '; background-color:' + colourSchemes.warning.back + '; border:' + colourSchemes.warning.border + '');
