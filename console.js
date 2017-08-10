@@ -15,14 +15,60 @@ console.pretty = function(c) {
     special: {
                 text: 'cornsilk',
                 back: 'cornflowerblue',
-                border: 'none'
+                border: '2px solid cornsilk'
               },
     warning: {
                 text: 'indianred',
                 back: 'cornsilk',
                 border: '2px solid indianred'
               }
-  } 
+  }
+   
+  // different action dependng on type  
+  switch(inputType) {
+    case 'string' :
+        console.log('%c' + c, 'color:' + colourSchemes.standard.text + '');
+        break;
+    case 'array' :
+        if ( c[0] != null ) { 
+            console.group('%cArray: ', 'color:' + colourSchemes.warning.text + '; border:' + colourSchemes.special.border + '');
+                c.forEach(function(item, i){
+                    console.log('%c '+ i + ' => ' + item  + ' ', 'color:' + colourSchemes.standard.text + '');
+                });              
+            console.groupEnd();  
+        }    
+        else {
+          console.log('%c' + 'Empty array!', 'color:' + colourSchemes.warning.text + '; background-color:' + colourSchemes.warning.back + '; border:' + colourSchemes.warning.border + '');
+        } 
+        break;
+    case 'object' :
+        if ( !null ) { 
+            console.group('%cObject: ', 'color:' + colourSchemes.warning.text + '; border:' + colourSchemes.special.border + '');
+                Object.keys(c).forEach(function(key) {
+                    console.log(key, c[key]);
+                });     
+             console.groupEnd();        
+        }
+        else {
+          console.log('%c' + 'null!', 'color:' + colourSchemes.warning.text + '; background-color:' + colourSchemes.warning.back + '; border:' + colourSchemes.warning.border + '');
+        }
+        break;        
+    case 'boolean' :
+        console.log('%c' + c, 'color:' + colourSchemes.special.text + '; background-color:' + colourSchemes.special.back + '');
+        break;    
+      case 'function' :
+          
+        break;
+    case 'undefined' :
+        console.log('%c' + 'undefined!', 'color:' + colourSchemes.warning.text + '; background-color:' + colourSchemes.warning.back + '; border:' + colourSchemes.warning.border + '');
+        break;
+    default :
+  }
+
+}
+
+
+ 
   
    /*
   // fn calling console
@@ -37,35 +83,3 @@ console.pretty = function(c) {
    console.log( prettyCall(c,colourSchemes.standard.text) );
   }
   */
-   
-  // different action dependng on type  
-  switch(inputType) {
-    case 'string' :
-        console.log('%c' + c, 'color:' + colourSchemes.standard.text + '');
-        break;
-    case 'array' :
-        console.table(c);
-        break;
-    case 'object' :
-        if ( !null ) {
-            if ( 1 == 1 /*one-level deep object*/ ) {
-                console.table([c]);
-            }
-            else {
-                console.table(c);
-            }
-        }
-        else {
-          console.log('%c' + 'null!', 'color:' + colourSchemes.warning.text + '; background-color:' + colourSchemes.warning.back + '; border:' + colourSchemes.warning.border + '');
-        }
-        break;        
-    case 'boolean' :
-        console.log('%c' + c, 'color:' + colourSchemes.special.text + '; background-color:' + colourSchemes.special.back + '');
-        break;     
-    case 'undefined' :
-        console.log('%c' + 'undefined!', 'color:' + colourSchemes.warning.text + '; background-color:' + colourSchemes.warning.back + '; border:' + colourSchemes.warning.border + '');
-        break;
-    default :
-  }
-
-}
