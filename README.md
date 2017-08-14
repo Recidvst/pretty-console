@@ -1,4 +1,4 @@
-# Pretty-Console
-Prettifying the browser console for easier reading of objects etc.
+# Pretty Console
+Prettifying the browser console with a new console method - making it easier to read and the type immediately clear.
 
 ``` in progress ```
