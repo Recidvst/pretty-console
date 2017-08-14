@@ -1,0 +1,44 @@
+{
+  "manifest_version": 2,
+
+  "name": "Pretty Console",
+  "short_name": "pretty-console",
+  "description": "Chrome extension which adds a prettifying wrapper to the console",
+  "version": "0.0.1",
+  "author": "Chris Snowden",
+  "icons": {
+    "19": "",
+    "38": "",
+    "128": ""
+  },
+
+  "browser_action": {
+    "default_icon": {
+      "19": "",
+      "38": ""
+    },
+    "default_title": "Pretty Console"
+  },
+
+  "background": {
+    "scripts": ["console.js"],
+    "persistent": false
+  },
+
+  "content_scripts": [{
+      "matches": ["<all_urls>"],
+      "js": ["highlight.js"]
+  }],
+
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/",
+    "tabs",
+    "<all_urls>"
+  ],
+
+  "web_accessible_resources": [
+   "*.png",
+   "console.js"
+ ]
+}
