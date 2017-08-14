@@ -27,9 +27,10 @@
 
   "content_scripts": [{
       "matches": ["<all_urls>"],
-      "js": ["highlight.js"]
+      "js": ["console.js"],
+      "run_at": "document_end"
   }],
-
+  
   "permissions": [
     "activeTab",
     "https://ajax.googleapis.com/",
