@@ -1,5 +1,6 @@
 # Pretty Console
 Prettifying the browser console with a new console method - making it easier to read and the argument type immediately clear.
+Available for free on the Chrome store shortly.
 
 ## Usage
 -   Find and add the Chrome extension to your browser.
@@ -9,5 +10,5 @@ Prettifying the browser console with a new console method - making it easier to 
 -   Your console printing will now be a little more pleasing :]
 
 ## To-do
--   Add full colourScheme choice support
--   
+-   Add full colour scheme support
+-   Possible object improvements
