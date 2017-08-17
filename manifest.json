@@ -7,12 +7,12 @@
   "version": "0.0.1",
   "author": "Chris Snowden",
   "icons": {
-      "19": "images/icon19dark.png"
+    "19": "images/icon19.png"
   },
 
   "browser_action": {
     "default_icon": {
-        "19": "images/icon19dark.png"
+      "19": "images/icon19.png"
     },
     "default_title": "Pretty Console"
   },

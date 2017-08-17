@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="99.09910583496094 146.39637756347656 156.53153228759766 109.2342529296875" xmlns="http://www.w3.org/2000/svg">
+  <rect x="99.1" y="146.396" width="157.657" height="110.361" style="fill: rgb(17, 15, 15);"/>
+  <text x="141.892" y="181.306" style="fill: rgb(80, 248, 65); font-family: sans-serif; font-size: 24px; white-space: pre;">Object</text>
+  <text x="180.18" y="212.838" transform="matrix(1, 0, 0, 1.000001, -38.288288, 29.279152)" style="fill: rgb(80, 248, 65); font-family: sans-serif; font-size: 24px; white-space: pre;">String</text>
+  <text x="143.018" y="210.586" style="fill: rgb(80, 248, 65); font-family: sans-serif; font-size: 24px; white-space: pre;">Array</text>
+</svg>
