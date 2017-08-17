@@ -3,76 +3,79 @@ console.pretty = function(c) {
   // get type of input
   var inputType = typeof c;
   var args = arguments;
-  
-  // colour scheme
-  colourSchemes = {
-    standard: {
-                text: 'lightseagreen',
-                back: 'none',
-                border: 'none'
-              },
-    special: {
-                text: 'cornsilk',
-                back: 'cornflowerblue',
-                border: '2px solid cornsilk'
-              },
-    warning: {
-                text: 'indianred',
-                back: 'cornsilk',
-                border: '2px solid indianred'
-              }
-  }
-   
-  // test elements
-  var boolean = true;
-  var string = 'string';
-  var undefined = undefined;
-  var array1 = [1,2,3];
-  var array2 = [1,2,[3,4,5],6];
-  var array3 = [
-    a = { name: "aa", test: "test1" },
-    b ={ name: "bb", test: "test2" }
-  ];
-  var array4 = new Array();
-  var object1 = { 
-    a : { name: "aa", test: "test1" },
-    b : { name: "bb", test: "test2" }
+  var isObject = function(a) {
+     return (!!a) && (a.constructor === Object);
   };
-  var object2 = {
-    a: 'b',
-    c: 'd'
+  console.log(inputType);
+  // colour scheme
+  colourScheme = {	  
+	'string': [
+		'color: green',
+		'background-color: none',
+		'border: none',
+		'padding: 2px 4px'
+	].join(';'),	    
+	'boolean': [
+		'color: #fff',
+		'background-color: #E76D83',
+		'border: none',
+		'padding: 2px 4px'
+	].join(';'),    
+	'undefined': [
+		'color: red',
+		'background-color: #fff',
+		'border: 2px solid red',
+		'padding: 2px 4px'
+	].join(';'),  
+	'function': [
+		'color: blue',
+		'background-color: none',
+		'border: none',
+		'padding: 2px'
+	].join(';'),	  
+	'array': [
+		'color: orange',
+		'background-color: none',
+		'border: none',
+		'padding: 2px'
+	].join(';'),  
+	'object': [
+		'color: purple',
+		'background-color: none',
+		'border: none',
+		'padding: 2px'
+	].join(';'),
+	'type': [
+		'color: #D5BBB1',
+		'background-color: none',
+		'border: none',
+		'padding: 2px'
+	].join(';')
   }
-  var object3 = {};
-  var func1 = function() { console.log('hi');}
-  var func2 = function(a,b,c) { console.log('hi');}
-	
-	
+   	
   // different action dependng on type  
   switch(inputType) {
-    case 'string' :
-        console.log('%c' + c, 'color:' + colourSchemes.standard.text + '');
-        break;
     case 'object' :
         if ( !null ) { 
             if ( c.constructor === Array ) {
                 if ( c[0] != null ) { 
-                    console.group('%cArray: ', 'color:' + colourSchemes.warning.text + '');
+                    console.group('%cArray: ', colourScheme.type);
                         c.forEach(function(item, i){
-                            console.log('%c '+ i + ' => ' + item  + ' ', 'color:' + colourSchemes.standard.text + '');
+                            console.log('%c '+ i + ' => ' + item  + ' ', colourScheme.array);
                         });          
-                    console.log('%cArgs-> ' + arguments + '', 'color:' + colourSchemes.warning.text + '');     
+                    console.log('%cArgs-> ' + arguments + '', colourScheme.type);     
                     console.groupEnd();  
 				}
                 else {
-                  console.log('%c' + 'Empty array!', 'color:' + colourSchemes.warning.text + '; background-color:' + colourSchemes.warning.back + '; border:' + colourSchemes.warning.border + '');
+                  console.log('%c' + 'Empty array!', colourScheme.array);
                 }  
 			}               
             else {
-//                 console.group('%cObject: ', 'color:' + colourSchemes.warning.text + '');
+//                 console.group('%cObject: ', colourScheme.type);
 //                     Object.keys(c).forEach(function(key) {
 //                         console.log(key, c[key]);
 //                     });     
-//                     console.log('%cArgs-> ' + arguments + '', 'color:' + colourSchemes.warning.text + '');  
+//                     console.log('%cArgs-> ' + arguments + '', colourScheme.object);  
 //                 console.groupEnd();
 		    
 		// or stringify!?
@@ -80,12 +83,10 @@ console.pretty = function(c) {
             }                    
         }
         else {
-          console.log('%c' + 'null!', 'color:' + colourSchemes.warning.text + '; background-color:' + colourSchemes.warning.back + '; border:' + colourSchemes.warning.border + '');
+          console.log('%c' + 'null!', colourScheme.type);
         }
-        break;        
-    case 'boolean' :
-        console.log('%c' + c, 'color:' + colourSchemes.special.text + '; background-color:' + colourSchemes.special.back + '');
-        break;    
+        break;
+		  
     case 'function' :
 	 function getArgs(func) {
 	    var args = func.toString().match(/function\s.*?\(([^)]*)\)/)[1];
@@ -102,30 +103,21 @@ console.pretty = function(c) {
 	 }
 	  var funcDetails = [c.name,getArgs(c),getBody(c)];
 	  	funcDetails.forEach(function(item, i){
-	      		console.log('%c '+ i + ' => ' + item  + ' ', 'color:' + colourSchemes.standard.text + '');
+	      		console.log('%c '+ i + ' => ' + item  + ' ', colourScheme.function);
 	 	});    
         break;
+		  
+		  
+    case 'string' :
+        console.log('%c' + c, colourScheme.string);
+        break;        
+    case 'boolean' :
+        console.log('%c' + c, colourScheme.boolean ); 
+	break;  
     case 'undefined' :
-        console.log('%c' + 'undefined!', 'color:' + colourSchemes.warning.text + '; background-color:' + colourSchemes.warning.back + '; border:' + colourSchemes.warning.border + '');
-        break;
+        console.log('%c' + 'undefined!', colourScheme.undefined ); 
+	break;
     default :
   }
 
 }
-
-
- 
-  
-   /*
-  // fn calling console
-  function prettyCall( print, text, background, border) {
-   var temp = '';
-   temp += "'%c";
-   temp += print + "',";
-   temp += (text) ? "'color:" + text + "'" : '';
-   temp += (background) ? "'background-color:" + background + "'" : '';
-   temp += (border) ? "'border:" + border + "'" : '';
-   return temp;
-   console.log( prettyCall(c,colourSchemes.standard.text) );
-  }
-  */
