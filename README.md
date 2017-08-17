@@ -7,7 +7,7 @@ Prettifying the browser console with a new console method - making it easier to 
 -   Default colour scheme provided in colourScheme.js - edit to choose your own.
 -   Repo is set-up as a chrome extension but not published.
 
-!['Pretty console example'](https://github.com/Recidvst/pretty-console/master/images/sshot-small.png "Pretty console example")
+!['Pretty console example'](https://github.com/Recidvst/pretty-console/blob/master/images/sshot-small.PNG "Pretty console example")
 
 
 ### To-do
