@@ -10,28 +10,29 @@ console.pretty = function(c) {
   // colour scheme
   colourScheme = {	  
 	'string': [
-		'color: green',
+		'color: limegreen',
 		'background-color: none',
 		'border: none',
 		'padding: 2px 4px'
 	].join(';'),	    
 	'boolean': [
 		'color: #fff',
-		'background-color: #E76D83',
+		'background-color: darkslateblue',
 		'border: none',
 		'padding: 2px 4px'
 	].join(';'),    
 	'undefined': [
 		'color: red',
 		'background-color: #fff',
-		'border: 2px solid red',
+		'border: none',
 		'padding: 2px 4px'
 	].join(';'),  
 	'function': [
-		'color: blue',
+		'color: darkcyan',
 		'background-color: none',
 		'border: none',
-		'padding: 2px'
+		'padding: 2px',
+		'font-size: 14px'
 	].join(';'),	  
 	'array': [
 		'color: orange',
@@ -40,7 +41,7 @@ console.pretty = function(c) {
 		'padding: 2px'
 	].join(';'),  
 	'object': [
-		'color: purple',
+		'color: yellow',
 		'background-color: none',
 		'border: none',
 		'padding: 2px'
@@ -101,10 +102,13 @@ console.pretty = function(c) {
             var body = args.match(/{[\w\W]*}/);
 		 return body[0]
 	 }
-	  var funcDetails = [c.name,getArgs(c),getBody(c)];
-	  	funcDetails.forEach(function(item, i){
-	      		console.log('%c '+ i + ' => ' + item  + ' ', colourScheme.function);
-	 	});    
+	  var funcDetails = [getArgs(c),getBody(c)];
+		console.group('function %c' + c.name + '', colourScheme.function);
+	  		funcDetails.forEach(function(item, i){
+				var i = (i == 0 ) ? 'Args -> ' : 'Body -> '; 
+	      			console.log('%c' + i + item + '', colourScheme.string);
+	 		});    
+		console.groupEnd();
         break;
 		  
 		  
